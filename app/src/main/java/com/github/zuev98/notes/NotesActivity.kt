@@ -42,4 +42,9 @@ class NotesActivity : AppCompatActivity(), NotesContract.View {
     override fun getDataFailed(error: String) {
         Toast.makeText(this, error, Toast.LENGTH_LONG).show()
     }
+
+    override fun onDestroy() {
+        notesPresenter.onDestroy()
+        super.onDestroy()
+    }
 }
