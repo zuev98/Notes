@@ -1,14 +1,12 @@
 package com.github.zuev98.notes
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-class NotesActivity : AppCompatActivity(), NotesContract.View {
+class NotesActivity : AppCompatActivity(), View {
     private lateinit var notesPresenter: NotesPresenter
     private lateinit var headingEditText: EditText
     private lateinit var noteEditText: EditText
@@ -19,16 +17,20 @@ class NotesActivity : AppCompatActivity(), NotesContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
 
-        notesPresenter = NotesPresenter(this, NotesModel())
+        initViews()
+        notesPresenter = NotesPresenter(this)
+    }
+
+    private fun initViews() {
         headingEditText = findViewById(R.id.heading_input)
         noteEditText = findViewById(R.id.note_input)
         saveButton = findViewById(R.id.save_button)
         notesTextView = findViewById(R.id.notes_text_view)
-        notesTextView.movementMethod = ScrollingMovementMethod()
 
-        saveButton.setOnClickListener { notesPresenter.onButtonClick(
-            headingEditText.text.toString(),
-            noteEditText.text.toString())
+        saveButton.setOnClickListener {
+            notesPresenter.onButtonClick(
+                headingEditText.text.toString(),
+                noteEditText.text.toString())
         }
     }
 
@@ -36,7 +38,7 @@ class NotesActivity : AppCompatActivity(), NotesContract.View {
         notesTextView.append(text)
         headingEditText.setText("")
         noteEditText.setText("")
-        Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show()
     }
 
     override fun getDataFailed(error: String) {

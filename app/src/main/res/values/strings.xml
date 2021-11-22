@@ -3,4 +3,5 @@
     <string name="heading">Heading</string>
     <string name="note_text">Note text</string>
     <string name="save">Save</string>
+    <string name="saved">Saved</string>
 </resources>
