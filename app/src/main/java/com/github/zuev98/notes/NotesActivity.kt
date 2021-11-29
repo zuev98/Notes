@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 
 class NotesActivity : AppCompatActivity(), View {
     private lateinit var notesPresenter: NotesPresenter
@@ -18,6 +19,7 @@ class NotesActivity : AppCompatActivity(), View {
     private lateinit var shareButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
 
@@ -76,7 +78,7 @@ class NotesActivity : AppCompatActivity(), View {
 
     override fun shareNotes(text: String) {
         startActivity(Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
+            type = textType
             putExtra(Intent.EXTRA_TEXT, text)
         })
     }
@@ -88,5 +90,9 @@ class NotesActivity : AppCompatActivity(), View {
     override fun onDestroy() {
         notesPresenter.onDestroy()
         super.onDestroy()
+    }
+
+    companion object {
+        private const val textType = "text/plain"
     }
 }
