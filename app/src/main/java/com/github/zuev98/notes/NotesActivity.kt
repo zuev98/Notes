@@ -78,7 +78,7 @@ class NotesActivity : AppCompatActivity(), View {
 
     override fun shareNotes(text: String) {
         startActivity(Intent(Intent.ACTION_SEND).apply {
-            type = textType
+            type = TEXT_TYPE
             putExtra(Intent.EXTRA_TEXT, text)
         })
     }
@@ -93,6 +93,6 @@ class NotesActivity : AppCompatActivity(), View {
     }
 
     companion object {
-        private const val textType = "text/plain"
+        private const val TEXT_TYPE = "text/plain"
     }
 }
