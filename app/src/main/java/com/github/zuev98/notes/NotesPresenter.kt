@@ -1,59 +1,22 @@
 package com.github.zuev98.notes
 
 /**
- * Presenter for [NotesActivity]
+ * Presenter для [NotesActivity]
  *
- * @param notesView view which can be accessed through the interface
+ * @param notesView view, к которой можно получить доступ через интерфейс
  */
-class NotesPresenter(private var notesView: View?) {
-
+class NotesPresenter(private var notesView: NoteView?) {
     /**
-     * Handling of clicking on the "save" button
-     *
-     * @param heading note title
-     * @param note note text
-     */
-    fun onSaveBtnClicked(heading: String, note: String) {
-        when {
-            heading.isBlank() && note.isBlank() -> onEmptyError("Fill in the fields!")
-            heading.isBlank() -> onEmptyError("Fill in the heading!")
-            note.isBlank() -> onEmptyError("Fill in the note!")
-            else -> onSuccess("$heading:\n$note\n\n")
-        }
-    }
-
-    /**
-     *Handling of clicking on the "about" button
+     * Обработка нажатия на кнопку "About"
      */
     fun onAboutItemSelected() {
         notesView?.openAboutScreen()
     }
 
     /**
-     * Handling of clicking on the "share" button
-     *
-     * @param text notes text
-     */
-    fun onShareBtnClicked(text: String) {
-        if (text.isEmpty()) {
-            notesView?.shareDataFailed()
-        } else {
-            notesView?.shareNotes(text)
-        }
-    }
-
-    /**
-     * Method to destroy lifecycle of NotesActivity
+     * Метод для уничтожения жизненного цикла [NotesActivity]
      */
     fun onDestroy() {
         notesView = null
-    }
-
-    private fun onEmptyError(error: String) {
-        notesView?.getDataFailed(error)
-    }
-
-    private fun onSuccess(text: String) {
-        notesView?.addNotesTextView(text)
     }
 }

@@ -5,7 +5,9 @@
     <string name="save">Save</string>
     <string name="saved">Saved</string>
     <string name="app_version">Version 0.1</string>
-    <string name="about_hint">about</string>
+    <string name="about_hint">About</string>
     <string name="share">SHARE</string>
     <string name="share_failed">No saved notes!</string>
+    <string name="new_note">New Note</string>
+    <string name="save_note">Save Note</string>
 </resources>
