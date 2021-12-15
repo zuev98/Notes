@@ -21,7 +21,6 @@ class NoteFragment : Fragment(), NoteFragmentView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //note = Note()
         val noteId: UUID = arguments?.getSerializable(ARG_NOTE_ID) as UUID
         note = NoteRepository.getNote(noteId)
         setHasOptionsMenu(true)
@@ -77,12 +76,16 @@ class NoteFragment : Fragment(), NoteFragmentView {
         }
     }
 
-    override fun addNotesTextView(text: String) {
-        showToast(text)
+    override fun showSavedNoteToast() {
+        showToast(getString(R.string.saved))
     }
 
-    override fun getDataFailed(error: String) {
-        showToast(error)
+    override fun onHeadingEmpty() {
+        showToast(getString(R.string.fill_heading))
+    }
+
+    override fun onNoteEmpty() {
+        showToast(getString(R.string.fill_text))
     }
 
     override fun shareNote(heading: String, text: String) {

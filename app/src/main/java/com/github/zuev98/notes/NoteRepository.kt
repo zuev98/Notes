@@ -6,13 +6,15 @@ import java.util.*
  * Репозиторий с mock-данными
  */
 object NoteRepository {
+    private const val HEADING = "Heading"
+    private const val TEXT = "Text"
     val notes = mutableListOf<Note>()
 
     init {
         for (i in 1..20) {
             val note = Note()
-            note.heading = "heading$i"
-            note.text = "text$i\n\n".repeat(i)
+            note.heading = "$HEADING$i"
+            note.text = "$TEXT$i\n\n".repeat(i)
             notes += note
         }
     }

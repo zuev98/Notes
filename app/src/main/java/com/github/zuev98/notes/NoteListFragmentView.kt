@@ -14,9 +14,9 @@ interface NoteListFragmentView {
     fun updateUI(mockData: List<Note>)
 
     /**
-     * callback при выборе заметки из списка
+     * Открывает [NoteFragment] при выборе заметки из списка
      *
      * @param noteId идентификатор заметки
      */
-    fun callback(noteId: UUID)
+    fun pushFragment(noteId: UUID)
 }

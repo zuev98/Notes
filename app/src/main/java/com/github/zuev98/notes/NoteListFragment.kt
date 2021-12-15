@@ -1,9 +1,7 @@
 package com.github.zuev98.notes
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,12 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class NoteListFragment : Fragment(), NoteListFragmentView {
-    interface Callbacks {
-        fun onNoteSelected(noteID: UUID)
-    }
-
-    private var callbacks: Callbacks? = null
+class NoteListFragment : Fragment(), NoteListFragmentView, NoteAdapter.OnNoteClickListener {
     private var adapter: NoteAdapter? = null
     private lateinit var noteListFragmentPresenter: NoteListFragmentPresenter
     private lateinit var noteRecyclerView: RecyclerView
@@ -40,22 +33,20 @@ class NoteListFragment : Fragment(), NoteListFragmentView {
     }
 
     override fun updateUI(mockData: List<Note>) {
-        adapter = NoteAdapter(mockData)
+        adapter = NoteAdapter(mockData, this)
         noteRecyclerView.adapter = adapter
     }
 
-    override fun callback(noteId: UUID) {
-        callbacks?.onNoteSelected(noteId)
+    override fun pushFragment(noteId: UUID) {
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.fragment_container, NoteFragment.newInstance(noteId))
+            ?.addToBackStack(null)
+            ?.commit()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callbacks = context as Callbacks?
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        callbacks = null
+    override fun onNoteClick(noteId: UUID) {
+        noteListFragmentPresenter.onNoteClicked(noteId)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,39 +73,5 @@ class NoteListFragment : Fragment(), NoteListFragmentView {
 
     companion object {
         fun newInstance() = NoteListFragment()
-    }
-
-    private inner class NoteHolder(view: View)
-        : RecyclerView.ViewHolder(view), View.OnClickListener {
-        private lateinit var note: Note
-
-        private val noteHeading: TextView = itemView.findViewById(R.id.note_heading)
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        fun bind(note: Note) {
-            this.note = note
-            noteHeading.text = this.note.heading
-        }
-
-        override fun onClick(v: View?) {
-            noteListFragmentPresenter.onNoteClicked(note.id)
-        }
-    }
-
-    private inner class NoteAdapter(var notes: List<Note>) : RecyclerView.Adapter<NoteHolder>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
-            val view = layoutInflater.inflate(R.layout.list_item_note, parent, false)
-            return NoteHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: NoteHolder, position: Int) {
-            val note = notes[position]
-            holder.bind(note)
-        }
-
-        override fun getItemCount() = notes.size
     }
 }

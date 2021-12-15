@@ -18,16 +18,17 @@ interface NoteFragmentView  {
     fun shareDataFailed()
 
     /**
-     * Сохранить заметку
-     *
-     *@param text текст заметки
+     * Выводит toast о сохранении заметки
      */
-    fun addNotesTextView(text: String)
+    fun showSavedNoteToast()
 
     /**
-     * Выводит toast о незаполненных полях при сохранении
-     *
-     * @param error error text
+     * Выводит toast о незаполненном заголовке при сохранении
      */
-    fun getDataFailed(error: String)
+    fun onHeadingEmpty()
+
+    /**
+     * Выводит toast о незаполненном тексте заметки при сохранении
+     */
+    fun onNoteEmpty()
 }

@@ -28,18 +28,9 @@ class NoteFragmentPresenter(private var noteFragmentView: NoteFragmentView?) {
      */
     fun onSaveBtnClicked(heading: String, note: String) {
         when {
-            heading.isBlank() && note.isBlank() -> onEmptyError("Fill in the fields!")
-            heading.isBlank() -> onEmptyError("Fill in the heading!")
-            note.isBlank() -> onEmptyError("Fill in the note!")
-            else -> onSuccess()
+            heading.isBlank() -> noteFragmentView?.onHeadingEmpty()
+            note.isBlank() -> noteFragmentView?.onNoteEmpty()
+            else -> noteFragmentView?.showSavedNoteToast()
         }
-    }
-
-    private fun onEmptyError(error: String) {
-        noteFragmentView?.getDataFailed(error)
-    }
-
-    private fun onSuccess() {
-        noteFragmentView?.addNotesTextView("Note saved")
     }
 }

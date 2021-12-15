@@ -6,9 +6,8 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import java.util.*
 
-class NotesActivity : AppCompatActivity(), NoteView, NoteListFragment.Callbacks {
+class NotesActivity : AppCompatActivity(), NoteView {
     private lateinit var notesPresenter: NotesPresenter
     private lateinit var toolbar: Toolbar
 
@@ -30,15 +29,6 @@ class NotesActivity : AppCompatActivity(), NoteView, NoteListFragment.Callbacks 
                 .add(R.id.fragment_container, fragment)
                 .commit()
         }
-    }
-
-    override fun onNoteSelected(noteID: UUID) {
-        val fragment = NoteFragment.newInstance(noteID)
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

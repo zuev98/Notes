@@ -10,4 +10,6 @@
     <string name="share_failed">No saved notes!</string>
     <string name="new_note">New Note</string>
     <string name="save_note">Save Note</string>
+    <string name="fill_heading">Fill in the heading!</string>
+    <string name="fill_text">Fill in the text!</string>
 </resources>

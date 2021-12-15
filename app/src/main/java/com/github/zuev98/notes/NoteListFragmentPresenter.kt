@@ -22,6 +22,6 @@ class NoteListFragmentPresenter(private var noteListFragmentView: NoteListFragme
      * @param noteID идентификатор заметки
      */
     fun onNoteClicked(noteID: UUID) {
-        noteListFragmentView?.callback(noteID)
+        noteListFragmentView?.pushFragment(noteID)
     }
 }
