@@ -7,10 +7,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class NoteAdapter(var notes: List<Note>, val onNoteClickListener: OnNoteClickListener)
+class NoteAdapter(val onNoteClickListener: OnNoteClickListener)
     : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     interface OnNoteClickListener {
         fun onNoteClick(noteId: UUID)
+    }
+
+    private var noteList: List<Note>? = null
+
+    fun getNoteList() = noteList
+
+    fun setNoteList(notes: List<Note>) {
+        noteList = notes
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteAdapter.NoteHolder {
@@ -20,11 +29,11 @@ class NoteAdapter(var notes: List<Note>, val onNoteClickListener: OnNoteClickLis
     }
 
     override fun onBindViewHolder(holder: NoteAdapter.NoteHolder, position: Int) {
-        val note = notes[position]
-        holder.bind(note)
+        val note = noteList?.get(position)
+        note?.let { holder.bind(it) }
     }
 
-    override fun getItemCount() = notes.size
+    override fun getItemCount() = noteList?.size ?: 0
 
     inner class NoteHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         private lateinit var note: Note

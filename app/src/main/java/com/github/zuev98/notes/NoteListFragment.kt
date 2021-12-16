@@ -33,7 +33,8 @@ class NoteListFragment : Fragment(), NoteListFragmentView, NoteAdapter.OnNoteCli
     }
 
     override fun updateUI(mockData: List<Note>) {
-        adapter = NoteAdapter(mockData, this)
+        adapter = NoteAdapter(this)
+        adapter?.setNoteList(mockData)
         noteRecyclerView.adapter = adapter
     }
 
