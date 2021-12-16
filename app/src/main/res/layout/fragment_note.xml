@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="5dp">
+
+    <EditText
+        android:id="@+id/heading_edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/heading"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:importantForAutofill="no"
+        tools:ignore="TextContrastCheck"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/note_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/note_text"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/note_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/share_button"
+        android:text="@string/share"
+        style="@style/notes_button_style" />
+</LinearLayout>

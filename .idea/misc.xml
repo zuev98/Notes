@@ -4,11 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Project_Mob/Notes/app/src/main/res/drawable-anydpi/ic_about.xml" value="0.165234375" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/drawable-anydpi/ic_menu_add.xml" value="0.165234375" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/drawable/divider.xml" value="0.165234375" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout-v23/activity_notes.xml" value="0.20416666666666666" />
         <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/activity_about.xml" value="0.18" />
         <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/activity_notes.xml" value="0.18" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/activity_notes.xml" value="0.16" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/fragment_note.xml" value="0.153125" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/fragment_note_list.xml" value="0.16" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/layout/list_item_note.xml" value="0.153125" />
         <entry key="..\:/Project_Mob/Notes/app/src/main/res/menu/about_app.xml" value="0.153125" />
         <entry key="..\:/Project_Mob/Notes/app/src/main/res/menu/about_app_menu.xml" value="0.153125" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/menu/fragment_note.xml" value="0.153125" />
+        <entry key="..\:/Project_Mob/Notes/app/src/main/res/menu/fragment_note_list.xml" value="0.153125" />
       </map>
     </option>
   </component>
